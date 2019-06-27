@@ -1,9 +1,11 @@
 def main():
     ans = 0
     mystack = []
-    intstack = []
     flag = False
     paren = input()
+    intstack = []
+    answer = 0
+    last = 0
     for idx, ch in enumerate(paren):  # O(n)
         if ch == '(':
             mystack.append(ch)
@@ -15,13 +17,15 @@ def main():
             if flag:
                 if len(mystack) == 0:
                     intstack.pop()
+
                     continue
                 intstack.pop()
-                for j in range(len(intstack)): # O(n)
-                    intstack[j] += 1
+                ans += len(intstack)
+
             else:
                 ans += intstack[-1]
                 intstack.pop()
+
             flag = False
     print(ans)
 
