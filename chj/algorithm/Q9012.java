@@ -3,28 +3,37 @@ package com.company.boostcamp;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Stack;
 
 public class Q9012 {
-    void main() {
+    public void main() {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int balance = 0;
+
+        Stack<Character> stack = new Stack<>();
+
         try {
             int instructions = Integer.parseInt(br.readLine());
 
             for (int i = 0; i < instructions; i++) {
                 String instruction = br.readLine();
+                boolean balance = true;
 
                 for (int j = 0; j < instruction.length(); j++) {
                     if (instruction.charAt(j) == '(') {
-                        balance++;
+                        stack.push('(');
                     } else if (instruction.charAt(j) == ')') {
-                        balance--;
+                        if (stack.empty()) {
+                            balance = false;
+                            break;
+                        } else {
+                            stack.pop();
+                        }
                     }
                 }
 
-                if (balance == 0) System.out.println("YES");
+                if (balance && stack.empty()) System.out.println("YES");
                 else System.out.println("NO");
-                balance = 0;
+                stack.clear();
             }
         } catch (IOException e) {
             e.printStackTrace();
