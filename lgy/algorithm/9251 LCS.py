@@ -21,6 +21,8 @@ def main():
 
     print(dp[len(v1)][len(v2)])
 
+
+print("ab"[0])
 user_input = '''
 ACAYKP
 CAPCAK
